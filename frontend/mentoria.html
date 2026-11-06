@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b1245">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:site_name" content="Naty Alves · Mentora de vendas">
+<script type="module" src="/assets/js/site.js"></script>
+<title>Mentoria de vendas · Naty Alves</title>
+<meta name="description" content="Mentoria individual e treinamento de equipes de vendas.">
+</head>
+<body data-page="mentoria">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header data-header></header>
+<main id="conteudo">
+  <div class="page-head"><div class="wrap"><h1>Mentoria de vendas</h1><p data-mentoring></p></div></div>
+  <section class="section"><div class="wrap">
+    <div class="section-head"><h2>Como funciona</h2></div>
+    <ol class="steps">
+      <li><h3>Você conta o objetivo</h3><p>Pelo formulário abaixo: o que vende, para quem e onde está travando.</p></li>
+      <li><h3>Conversa rápida</h3><p>Te chamo no WhatsApp para entender melhor e combinar dia, formato e valor.</p></li>
+      <li><h3>Encontro de mentoria</h3><p>Analisamos conversas reais e montamos o seu roteiro de abordagem e fechamento.</p></li>
+      <li><h3>Plano de ação</h3><p>Você sai com tarefas claras para as próximas semanas e um retorno combinado.</p></li>
+    </ol></div></section>
+  <section class="section mist"><div class="wrap two-col">
+    <form class="form" id="mentoring-form" novalidate>
+      <h2>Pedir mentoria</h2>
+      <div class="notice" hidden></div>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <fieldset class="field" style="border:0;padding:0;margin:0"><legend>Para quem é a mentoria?</legend>
+        <div class="segmented"><input type="radio" name="kind" id="k-ind" value="individual" checked><label for="k-ind">Só para mim</label>
+          <input type="radio" name="kind" id="k-eq" value="equipe"><label for="k-eq">Para minha equipe</label></div></fieldset>
+      <div class="field" data-team hidden><label for="m-team">Quantas pessoas na equipe?</label><input class="input" type="number" id="m-team" name="team_size" min="2" max="500"></div>
+      <div class="row-2">
+        <div class="field"><label for="m-name">Nome</label><input class="input" id="m-name" name="name" required autocomplete="name" data-msg="Informe seu nome."></div>
+        <div class="field"><label for="m-phone">WhatsApp</label><input class="input" type="tel" id="m-phone" name="phone" required pattern=".{14,15}" autocomplete="tel" data-msg="Informe o WhatsApp com DDD."></div>
+      </div>
+      <div class="field"><label for="m-email">E-mail</label><input class="input" type="email" id="m-email" name="email" required autocomplete="email" data-msg="Informe um e-mail válido."></div>
+      <div class="field"><label for="m-goal">O que você vende e onde quer melhorar?</label><textarea class="input" id="m-goal" name="goal" maxlength="3000" placeholder="Ex.: vendo cosméticos pelo Instagram e as pessoas pedem preço e somem."></textarea></div>
+      <div class="field"><label for="m-times">Melhores dias e horários</label><input class="input" id="m-times" name="preferred_times" placeholder="Ex.: terça ou quinta à noite"></div>
+      <label class="check"><input type="checkbox" name="consent" required data-msg="Marque para enviar o pedido."><span>Autorizo o contato pelo WhatsApp e li a <a href="/privacidade">política de privacidade</a>.</span></label>
+      <div><button class="btn btn-hot" type="submit">Enviar pedido de mentoria</button></div>
+    </form>
+    <aside class="facts"><dl>
+      <div><dt>Formato</dt><dd>Online ou presencial</dd></div>
+      <div><dt>Duração</dt><dd>Encontros de 1 hora (individual) ou meio período (equipes)</dd></div>
+      <div><dt>Valor</dt><dd>Combinado de acordo com o formato e o número de encontros</dd></div>
+      <div><dt>Pagamento</dt><dd>PIX, antes do encontro</dd></div></dl></aside>
+  </div></section>
+</main>
+<footer data-footer></footer>
+</body>
+</html>

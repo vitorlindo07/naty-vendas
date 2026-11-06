@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b1245">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:site_name" content="Naty Alves · Mentora de vendas">
+<script type="module" src="/assets/js/site.js"></script>
+<title>Contato · Naty Alves</title>
+<meta name="description" content="Fale com Naty Alves.">
+</head>
+<body data-page="contato">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header data-header></header>
+<main id="conteudo">
+  <div class="page-head"><div class="wrap"><h1>Contato</h1><p>O jeito mais rápido é o WhatsApp. Se preferir, escreva aqui.</p></div></div>
+  <section class="section"><div class="wrap two-col">
+    <form class="form" id="contact-form" novalidate>
+      <div class="notice" hidden></div>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field"><label for="c-name">Nome</label><input class="input" id="c-name" name="name" required autocomplete="name" data-msg="Informe seu nome."></div>
+      <div class="row-2">
+        <div class="field"><label for="c-email">E-mail</label><input class="input" type="email" id="c-email" name="email" required autocomplete="email" data-msg="Informe um e-mail válido."></div>
+        <div class="field"><label for="c-phone">WhatsApp (opcional)</label><input class="input" type="tel" id="c-phone" name="phone" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="c-msg">Mensagem</label><textarea class="input" id="c-msg" name="message" required minlength="5" data-msg="Escreva sua mensagem."></textarea></div>
+      <label class="check"><input type="checkbox" name="consent" required data-msg="Marque para podermos responder."><span>Autorizo o uso destes dados para receber resposta, conforme a <a href="/privacidade">política de privacidade</a>.</span></label>
+      <div><button class="btn btn-hot" type="submit">Enviar mensagem</button></div>
+    </form>
+    <aside class="facts"><dl data-channels></dl></aside></div></section>
+</main>
+<footer data-footer></footer>
+</body>
+</html>

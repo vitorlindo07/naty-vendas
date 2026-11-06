@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Entrar · Painel Naty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/admin.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="login-page">
+<main class="login-card">
+  <div class="mark" aria-hidden="true">N</div>
+  <h1>Painel de gestão</h1>
+  <p class="muted">Inscrições, turmas, alunos e financeiro.</p>
+  <form id="login" novalidate>
+    <div class="f"><label for="email">E-mail</label>
+      <input class="input" type="email" id="email" name="email" autocomplete="username" required></div>
+    <div class="f"><label for="password">Senha</label>
+      <input class="input" type="password" id="password" name="password" autocomplete="current-password" required></div>
+    <p class="form-error" id="err" role="alert" hidden></p>
+    <button class="btn btn-tag" type="submit" style="justify-content:center;padding:.75rem">Entrar</button>
+  </form>
+  <p class="small muted" style="margin-top:1.2rem"><a href="/">Voltar para o site</a></p>
+</main>
+<script>
+  const form = document.getElementById("login");
+  const err = document.getElementById("err");
+  if (localStorage.getItem("nt_token")) location.replace("/admin");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    err.hidden = true;
+    const btn = form.querySelector("button");
+    btn.disabled = true;
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email.value, password: form.password.value }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Não foi possível entrar.");
+      localStorage.setItem("nt_token", data.access_token);
+      localStorage.setItem("nt_user", JSON.stringify(data.user));
+      location.replace("/admin");
+    } catch (ex) {
+      err.textContent = ex.message;
+      err.hidden = false;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

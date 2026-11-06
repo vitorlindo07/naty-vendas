@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel · Naty Alves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/admin.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<script>if (!localStorage.getItem("nt_token")) location.replace("/admin/login");</script>
+<script type="module" src="/assets/js/admin/app.js"></script>
+</head>
+<body>
+<div class="topbar-mobile"><button type="button" data-menu aria-label="Abrir menu">Menu</button><strong>Painel Naty</strong></div>
+<div class="app">
+  <aside class="side" id="side">
+    <a class="brand" href="#/"><span class="mark">N</span><span><strong>Naty Alves</strong><br><span class="small">Painel de gestão</span></span></a>
+    <nav aria-label="Painel">
+      <a href="#/">Visão geral</a>
+      <div class="group">Vendas</div>
+      <a href="#/inscricoes">Inscrições <span class="badge" data-badge="enroll" hidden></span></a>
+      <a href="#/mentorias">Mentorias <span class="badge" data-badge="mentoring" hidden></span></a>
+      <a href="#/interessados">Interessados <span class="badge" data-badge="leads" hidden></span></a>
+      <a href="#/mensagens">Mensagens <span class="badge" data-badge="messages" hidden></span></a>
+      <div class="group">Cursos</div>
+      <a href="#/turmas">Turmas</a>
+      <a href="#/cursos">Cursos</a>
+      <a href="#/alunos">Alunos</a>
+      <div class="group">Empresa</div>
+      <a href="#/financeiro">Financeiro e MEI</a>
+      <div class="group">Site</div>
+      <a href="#/dicas">Dicas (blog)</a>
+      <a href="#/depoimentos">Depoimentos <span class="badge" data-badge="reviews" hidden></span></a>
+      <a href="#/configuracoes">Configurações</a>
+    </nav>
+    <div class="foot">
+      <div data-user></div>
+      <a href="/" target="_blank" rel="noopener" style="color:#fff">Ver site</a> ·
+      <button type="button" data-logout>Sair</button>
+    </div>
+  </aside>
+  <main class="view" id="view" tabindex="-1"></main>
+</div>
+<div class="toast-box" aria-live="polite"></div>
+</body>
+</html>

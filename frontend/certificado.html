@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b1245">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:site_name" content="Naty Alves · Mentora de vendas">
+<script type="module" src="/assets/js/site.js"></script>
+<title>Validar certificado · Naty Alves</title>
+<meta name="description" content="Confira a autenticidade de um certificado.">
+</head>
+<body data-page="certificado">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header data-header></header>
+<main id="conteudo">
+  <div class="page-head"><div class="wrap"><h1>Validar certificado</h1><p>Digite o código impresso no certificado para conferir se ele é verdadeiro.</p></div></div>
+  <section class="section"><div class="wrap" style="max-width:640px">
+    <form class="form" id="cert-form"><div class="field"><label for="code">Código do certificado</label>
+      <input class="input" id="code" name="code" placeholder="Ex.: 7F3A9C21" autocomplete="off" style="font-family:var(--mono);font-size:1.2rem;text-transform:uppercase"></div>
+      <div><button class="btn" type="submit">Validar</button></div></form>
+    <div data-result style="margin-top:1.5rem" aria-live="polite"></div></div></section>
+</main>
+<footer data-footer></footer>
+</body>
+</html>
