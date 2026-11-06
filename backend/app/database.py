@@ -5,7 +5,10 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from .config import settings
 
 connect_args = {"check_same_thread": False} if settings.DATABASE_URL.startswith("sqlite") else {}
-engine = create_engine(settings.DATABASE_URL, connect_args=connect_args, future=True)
+engine = create_engine(
+    settings.DATABASE_URL, connect_args=connect_args, future=True,
+    pool_pre_ping=True,  # descarta conexões que o PostgreSQL gerenciado (Neon) encerrou por inatividade
+)
 
 if settings.DATABASE_URL.startswith("sqlite"):
     @event.listens_for(engine, "connect")

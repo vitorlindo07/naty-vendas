@@ -49,8 +49,8 @@ def update_post(pid: int, data: PostIn, db: Session = Depends(get_db), user: Use
 @router.post("/posts/{pid}/cover", response_model=PostOut)
 async def post_cover(pid: int, image: UploadFile = File(...), db: Session = Depends(get_db)):
     p = get_or_404(db, Post, pid, "Dica")
-    new_path = await save_image(image)
-    remove_image(p.cover_path)
+    new_path = await save_image(image, db)
+    remove_image(db, p.cover_path)
     p.cover_path = new_path
     db.commit()
     return p
@@ -59,7 +59,7 @@ async def post_cover(pid: int, image: UploadFile = File(...), db: Session = Depe
 @router.delete("/posts/{pid}", status_code=204)
 def delete_post(pid: int, db: Session = Depends(get_db), user: User = Depends(current_user)):
     p = get_or_404(db, Post, pid, "Dica")
-    remove_image(p.cover_path)
+    remove_image(db, p.cover_path)
     audit(db, user, "excluiu", "dica", pid, p.title)
     db.delete(p)
     db.commit()

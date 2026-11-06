@@ -1,0 +1,8 @@
+# Dependências usadas pela Vercel (a cópia para desenvolvimento fica em backend/requirements.txt)
+fastapi>=0.115
+sqlalchemy>=2.0
+pydantic>=2.7
+python-multipart>=0.0.9
+bcrypt>=4.1
+PyJWT>=2.8
+psycopg[binary]>=3.2

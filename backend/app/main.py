@@ -3,12 +3,14 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
+from sqlalchemy.exc import IntegrityError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .config import settings
 from .database import Base, SessionLocal, engine
+from .models import StoredImage
 from .routers import academy, auth, content, courses, dashboard, finance, public
 from .seed import seed_base
 
@@ -24,7 +26,11 @@ PAGES = {
 async def lifespan(_: FastAPI):
     Base.metadata.create_all(engine)
     with SessionLocal() as db:
-        seed_base(db)
+        try:
+            seed_base(db)
+        except IntegrityError:
+            # outra instância (na Vercel podem subir várias ao mesmo tempo) já criou os dados iniciais
+            db.rollback()
     yield
 
 
@@ -58,10 +64,19 @@ for r in (auth.router, public.router, courses.router, academy.router, content.ro
 
 @app.get("/api/health", tags=["Sistema"])
 def health():
-    return {"status": "ok"}
+    return {"status": "ok", "database": engine.dialect.name}
 
 
-app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
+@app.get("/uploads/{name}", include_in_schema=False)
+def uploaded_image(name: str):
+    with SessionLocal() as db:
+        img = db.get(StoredImage, name)
+        if not img:
+            raise StarletteHTTPException(404)
+        return Response(img.data, media_type=img.content_type,
+                        headers={"Cache-Control": "public, max-age=31536000, immutable"})
+
+
 app.mount("/assets", StaticFiles(directory=settings.FRONTEND_DIR / "assets"), name="assets")
 
 

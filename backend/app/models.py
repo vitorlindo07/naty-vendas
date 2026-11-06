@@ -1,8 +1,8 @@
 """Modelo de dados (ORM SQLAlchemy 2.0). Diagrama em docs/MODELO_DE_DADOS.md."""
 from datetime import date, datetime
 
-from sqlalchemy import (Boolean, Date, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint,
-                        func)
+from sqlalchemy import (Boolean, Date, DateTime, Float, ForeignKey, Integer, LargeBinary, String, Text,
+                        UniqueConstraint, func)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .database import Base
@@ -28,6 +28,15 @@ class Setting(Base):
     __tablename__ = "settings"
     key: Mapped[str] = mapped_column(String(80), primary_key=True)
     value: Mapped[str] = mapped_column(Text)
+
+
+class StoredImage(Base):
+    """Imagem enviada pelo painel, guardada no banco (funciona também na Vercel)."""
+    __tablename__ = "stored_images"
+    name: Mapped[str] = mapped_column(String(60), primary_key=True)
+    content_type: Mapped[str] = mapped_column(String(30))
+    data: Mapped[bytes] = mapped_column(LargeBinary)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
 
 class AuditLog(Base):

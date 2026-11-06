@@ -5,6 +5,7 @@ pydantic>=2.7
 python-multipart>=0.0.9
 bcrypt>=4.1
 PyJWT>=2.8
+psycopg[binary]>=3.2      # PostgreSQL (Vercel/Neon); o SQLite local não precisa
 # testes
 pytest>=8
 httpx>=0.27

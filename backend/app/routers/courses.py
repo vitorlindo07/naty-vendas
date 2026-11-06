@@ -49,8 +49,8 @@ def update_course(cid: int, data: CourseIn, db: Session = Depends(get_db), user:
 async def upload_cover(cid: int, image: UploadFile = File(...), db: Session = Depends(get_db),
                        user: User = Depends(current_user)):
     c = get_or_404(db, Course, cid, "Curso")
-    new_path = await save_image(image)
-    remove_image(c.cover_path)
+    new_path = await save_image(image, db)
+    remove_image(db, c.cover_path)
     c.cover_path = new_path
     audit(db, user, "editou", "curso", cid, "Trocou a capa")
     db.commit()
@@ -60,7 +60,7 @@ async def upload_cover(cid: int, image: UploadFile = File(...), db: Session = De
 @router.delete("/courses/{cid}/cover", response_model=CourseOut)
 def delete_cover(cid: int, db: Session = Depends(get_db)):
     c = get_or_404(db, Course, cid, "Curso")
-    remove_image(c.cover_path)
+    remove_image(db, c.cover_path)
     c.cover_path = None
     db.commit()
     return c
@@ -71,7 +71,7 @@ def delete_course(cid: int, db: Session = Depends(get_db), user: User = Depends(
     c = get_or_404(db, Course, cid, "Curso")
     if db.query(Enrollment).filter(Enrollment.course_id == cid).first():
         raise HTTPException(409, "Este curso tem inscrições. Desative-o em vez de excluir, para manter o histórico.")
-    remove_image(c.cover_path)
+    remove_image(db, c.cover_path)
     audit(db, user, "excluiu", "curso", cid, c.title)
     db.delete(c)
     db.commit()
