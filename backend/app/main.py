@@ -16,7 +16,7 @@ from .seed import seed_base
 
 PAGES = {
     "": "index.html", "cursos": "cursos.html", "curso": "curso.html", "mentoria": "mentoria.html",
-    "dicas": "dicas.html", "dica": "dica.html", "sobre": "sobre.html", "contato": "contato.html",
+    "treino": "treino.html", "dicas": "dicas.html", "dica": "dica.html", "sobre": "sobre.html", "contato": "contato.html",
     "depoimento": "depoimento.html", "certificado": "certificado.html", "privacidade": "privacidade.html",
     "admin": "admin/index.html", "admin/login": "admin/login.html",
 }

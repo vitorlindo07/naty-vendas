@@ -26,7 +26,7 @@ def _class(client, auth, course_id, seats=2, **kw):
 
 # ---------------------------------------------------------------- site público
 def test_pages_and_public_data(client):
-    for page in ("/", "/cursos", "/curso", "/mentoria", "/dicas", "/certificado", "/admin/login"):
+    for page in ("/", "/cursos", "/curso", "/mentoria", "/treino", "/dicas", "/certificado", "/admin/login"):
         assert client.get(page).status_code == 200, page
     assert client.get("/nao-existe").status_code == 404
     site = client.get("/api/public/site").json()
@@ -34,7 +34,9 @@ def test_pages_and_public_data(client):
     assert "pix_key" not in site and "mei_limits" not in site
     courses = client.get("/api/public/courses").json()
     assert len(courses) == 4 and courses[0]["price"] is None       # preço começa "sob consulta"
-    assert client.get("/api/public/posts").json() == []              # dicas começam em rascunho
+    posts = client.get("/api/public/posts").json()
+    assert len(posts) == 5                                           # só as dicas novas; as 3 antigas começam em rascunho
+    assert client.get("/assets/img/cursos/vendas-do-zero.svg").status_code == 200
 
 
 def test_forms_validation(client):
@@ -172,3 +174,13 @@ def test_dashboard_and_audit(client, auth):
     assert {"pending_enrollments", "upcoming_classes", "mei", "new_leads"} <= d.keys()
     client.post("/api/admin/students", headers=auth, json={"name": "Log", "email": "log@x.com"})
     assert any(e["entity"] == "aluno" for e in client.get("/api/admin/audit", headers=auth).json())
+
+
+def test_new_posts_are_added_once(client):
+    from app.database import SessionLocal
+    from app.models import Post
+    from app.seed import NEW_POSTS, ensure_posts
+    with SessionLocal() as db:
+        ensure_posts(db)
+        db.commit()
+        assert db.query(Post).count() == 3 + len(NEW_POSTS)      # rodar de novo não duplica

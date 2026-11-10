@@ -192,7 +192,7 @@ class EnrollmentUpdate(BaseModel):
 
 
 class PaymentIn(BaseModel):
-    payment_method: str = "PIX"
+    payment_method: str = "Pix"
     paid_on: date | None = None
     invoice_number: str = ""
 

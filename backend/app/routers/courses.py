@@ -89,7 +89,7 @@ def _check(data: ClassIn, db: Session) -> None:
     if not db.get(Course, data.course_id):
         raise HTTPException(422, "Curso inválido.")
     if data.end_date and data.end_date < data.start_date:
-        raise HTTPException(422, "A data de término precisa ser igual ou depois do início.")
+        raise HTTPException(422, "A data de término precisa ser igual ou posterior à data de início.")
 
 
 @router.get("/classes", response_model=list[ClassOut])

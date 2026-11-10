@@ -15,9 +15,12 @@ DEFAULTS: dict = {
               "mais vendas, seja na loja, no WhatsApp ou no Instagram."),
     "about": ("Sou Natalice Alves da Silva, a Naty. Trabalho com vendas no lugar onde elas acontecem: "
               "no corredor da loja, na conversa com o cliente, na hora em que ele decide se leva ou não.\n\n"
-              "Foi ali que aprendi que vender não é empurrar produto. É entender o que a pessoa precisa, "
-              "mostrar com clareza e conduzir até a decisão. Hoje ensino esse caminho para quem está "
-              "começando e para quem já vende e quer resultados mais constantes.\n\n"
+              "Passei pelo varejo de moda, em loja com padrão de atendimento avaliado por cliente oculto, meta do dia "
+              "e treino constante da equipe. Foi ali que aprendi que vender não é empurrar produto: é entender o que "
+              "a pessoa precisa, mostrar com clareza e conduzir até a decisão. Aprendi também que excelência não é "
+              "ser perfeito o tempo todo, e sim ser consistente no que importa.\n\n"
+              "Hoje ensino esse caminho para quem está começando e para quem já vende e quer resultados mais "
+              "constantes.\n\n"
               "Minhas aulas são práticas: cada encontro tem simulação, roteiro pronto para usar no dia "
               "seguinte e espaço para tirar dúvidas da sua realidade."),
     "region": "Campinas e região – SP, e online para todo o Brasil",

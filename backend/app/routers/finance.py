@@ -131,8 +131,8 @@ def mei_status(db: Session, year: int, today: date | None = None) -> dict:
     remaining = limit - revenue
     months_left = 12 - today.month + 1 if today.year == year else (12 if today.year < year else 0)
     if pct >= 100:
-        level, message = "estourado", ("Faturamento acima do limite. Procure uma contadora: até 20% acima "
-                                       "o MEI paga DAS complementar; acima disso precisa desenquadrar.")
+        level, message = "estourado", ("Faturamento acima do limite. Procure uma contadora: até 20% acima, "
+                                       "o MEI paga DAS complementar; acima disso, precisa sair do MEI.")
     elif pct >= 80:
         level, message = "atencao", "Mais de 80% do limite usado. Planeje as próximas ações com cuidado."
     else:

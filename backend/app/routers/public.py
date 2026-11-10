@@ -128,7 +128,7 @@ def request_mentoring(data: MentoringIn, db: Session = Depends(get_db)):
     m = MentoringRequest(**data.model_dump(exclude={"website"}))
     db.add(m)
     db.commit()
-    return {"id": m.id, "message": "Pedido recebido! Vou te chamar no WhatsApp para combinar o melhor horário."}
+    return {"id": m.id, "message": "Pedido recebido! Vou chamar você no WhatsApp para combinar o melhor horário."}
 
 
 @router.post("/leads", status_code=201, dependencies=[Depends(form_limiter)])
