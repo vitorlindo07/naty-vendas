@@ -1,5 +1,12 @@
 import { api, dateTimeBR, esc, toast } from "./core.js";
 
+/* nomes legíveis para o histórico de atividades */
+const ENTITY = {
+  aluno: "o aluno", curso: "o curso", dica: "a dica", financeiro: "o lançamento financeiro", inscricao: "a inscrição",
+  turma: "a turma", configuracoes: "as configurações", das: "o DAS", depoimento: "o depoimento", mentoria: "a mentoria",
+  usuario: "a senha", lead: "o interessado", mensagem: "a mensagem",
+};
+
 const GROUPS = [
   ["Textos do site", [
     ["business_name", "Nome exibido"], ["business_subtitle", "Subtítulo"],
@@ -7,7 +14,7 @@ const GROUPS = [
     ["mentoring_text", "Texto da mentoria", "textarea"],
     ["about", "Texto da página Sobre (separe parágrafos com uma linha em branco)", "textarea"]]],
   ["Pagamento", [
-    ["pix_key", "Chave PIX (aparece para o aluno depois da inscrição)"], ["pix_name", "Nome do recebedor do PIX"]]],
+    ["pix_key", "Chave Pix (aparece para o aluno depois da inscrição)"], ["pix_name", "Nome do recebedor do Pix"]]],
   ["Contato", [
     ["whatsapp", "WhatsApp (com DDD)"], ["phone", "Telefone"], ["email", "E-mail"], ["instagram", "Instagram (@usuario)"],
     ["region", "Região atendida"]]],
@@ -46,7 +53,7 @@ export async function settingsView(view) {
         <button class="btn" type="submit" style="margin-top:1rem">Trocar senha</button>
       </form>
       <section class="panel"><h2>Histórico de atividades</h2>
-        <ul class="list small">${log.map((l) => `<li><span><strong>${esc(l.user)}</strong> ${esc(l.action)} ${esc(l.entity)}${l.entity_id ? ` #${l.entity_id}` : ""}
+        <ul class="list small">${log.map((l) => `<li><span><strong>${esc(l.user)}</strong> ${l.action === "entrou" ? "entrou no painel" : `${esc(l.action)} ${esc(ENTITY[l.entity] || l.entity)}`}${l.entity_id && l.action !== "entrou" ? ` nº ${l.entity_id}` : ""}
           <br><span class="muted">${esc(l.summary)}</span></span><span class="muted">${dateTimeBR(l.when)}</span></li>`).join("")
           || '<li class="muted">Sem atividades.</li>'}</ul></section>
     </div>`;

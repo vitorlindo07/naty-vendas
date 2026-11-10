@@ -55,7 +55,7 @@ export async function openEnrollment(id, reload) {
   const e = await api(`/api/admin/enrollments/${id}`);
   const first = e.student.name.split(" ")[0];
   const msgs = {
-    pagamento: `Oi, ${first}! Aqui é a Naty. Recebi sua inscrição no curso ${e.course.title}. O valor é ${money(e.amount)}; me manda o comprovante do PIX por aqui que eu confirmo sua vaga.`,
+    pagamento: `Oi, ${first}! Aqui é a Naty. Recebi sua inscrição no curso ${e.course.title}. O valor é ${money(e.amount)}; me manda o comprovante do Pix por aqui que eu confirmo sua vaga.`,
     confirmado: `Oi, ${first}! Pagamento confirmado, sua vaga no curso ${e.course.title} está garantida. ${e.course_class ? `Começamos em ${dateBR(e.course_class.start_date)} (${e.course_class.schedule}). ` : ""}Qualquer dúvida, me chama!`,
   };
   const dlg = infoDialog({
@@ -84,7 +84,7 @@ export async function openEnrollment(id, reload) {
         toast("Inscrição atualizada."); changed(); reload?.();
       } },
       ...(!e.paid ? [{ label: "Registrar pagamento", cls: "btn-tag", onClick: () => { payDialog(e, reload); } }] : []),
-      { label: e.paid ? "WhatsApp: confirmar vaga" : "WhatsApp: cobrar PIX", href: whatsUrl(e.student.phone, e.paid ? msgs.confirmado : msgs.pagamento) },
+      { label: e.paid ? "WhatsApp: confirmar vaga" : "WhatsApp: cobrar Pix", href: whatsUrl(e.student.phone, e.paid ? msgs.confirmado : msgs.pagamento) },
       ...(e.certificate_code ? [{ label: "Imprimir certificado", onClick: () => { printCertificates([e]); return false; } }] : []),
       { label: "Excluir", cls: "btn-danger", onClick: async () => {
         if (!(await confirmDialog(`Excluir a inscrição de ${e.student.name}?`))) return false;
@@ -99,7 +99,7 @@ function payDialog(e, reload) {
     title: "Registrar pagamento",
     intro: `<p class="muted">${esc(e.student.name)} · ${esc(e.course.title)} · <strong>${money(e.amount)}</strong>. A inscrição fica confirmada e a receita entra no financeiro.</p>`,
     fields: [
-      { name: "payment_method", label: "Forma de pagamento", type: "select", options: [["PIX", "PIX"], ["Cartão", "Cartão"], ["Dinheiro", "Dinheiro"], ["Transferência", "Transferência"]] },
+      { name: "payment_method", label: "Forma de pagamento", type: "select", options: [["Pix", "Pix"], ["Cartão", "Cartão"], ["Dinheiro", "Dinheiro"], ["Transferência", "Transferência"]] },
       { name: "paid_on", label: "Data do pagamento", type: "date", required: true },
       { name: "invoice_number", label: "Número da nota fiscal (se emitida)", full: true },
     ],

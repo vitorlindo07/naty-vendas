@@ -16,20 +16,23 @@ const FIELDS = [
   { name: "active", label: "Mostrar no site", type: "checkbox" },
 ];
 
+const COVERS = ["vendas-do-zero", "vendas-pelo-whatsapp-e-instagram", "atendimento-que-vende", "fechamento-e-objecoes"];
+const coverFor = (c) => c.cover_path || `/assets/img/cursos/${COVERS.includes(c.slug) ? c.slug : "padrao"}.svg`;
+
 export async function courses(view) {
   view.innerHTML = `<div class="view-head"><h1>Cursos</h1><div class="toolbar"><button class="btn" data-new>Novo curso</button></div></div>
-    <p class="muted" style="margin-top:-.6rem">Cada curso pode ter várias turmas. As datas e vagas ficam em <a href="#/turmas">Turmas</a>.</p>
+    <p class="muted" style="margin-top:-.6rem">Cada curso pode ter várias turmas; as datas e vagas ficam em <a href="#/turmas">Turmas</a>. Sem foto enviada, o curso usa a ilustração padrão.</p>
     <div data-grid></div>`;
   const draw = async () => {
     invalidate();
     const list = await api("/api/admin/courses");
     view.querySelector("[data-grid]").innerHTML = list.length ? `<div class="cards">${list.map((c) => `
-      <article class="card"><div class="ph">${c.cover_path ? `<img src="${esc(c.cover_path)}" alt="">` : "Sem capa"}</div>
+      <article class="card"><div class="ph"><img src="${esc(coverFor(c))}" alt=""></div>
         <div class="bd"><strong>${esc(c.title)}</strong><br><span class="small muted">${FORMATS[c.format]} · ${c.workload_hours} h ·
           ${c.price == null ? "sob consulta" : money(c.price)}</span><p class="small" style="margin:.5rem 0 0">${esc(c.tagline)}</p></div>
         <div class="ft">${c.active ? '<span class="pill s-aprovado">No site</span>' : '<span class="pill">Oculto</span>'}
           ${c.featured ? '<span class="pill s-em_analise">Destaque</span>' : ""}<span style="flex:1"></span>
-          <button class="btn btn-ghost btn-sm" data-cover="${c.id}">Capa</button>
+          <button class="btn btn-ghost btn-sm" data-cover="${c.id}">Trocar capa</button>
           <a class="btn btn-ghost btn-sm" href="/curso?c=${esc(c.slug)}" target="_blank" rel="noopener">Ver</a>
           <button class="btn btn-sm" data-edit="${c.id}">Editar</button></div></article>`).join("")}</div>`
       : emptyState("Nenhum curso cadastrado.", "Novo curso", () => edit(null));

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Ilustração: conversa de venda no celular">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a1a5c"/><stop offset="1" stop-color="#1e0c33"/></linearGradient>
+    <linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ffd166"/><stop offset=".5" stop-color="#e0306f"/><stop offset="1" stop-color="#8b3fd1"/></linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <g fill="#e0306f" opacity=".18"><circle cx="230" cy="160" r="170"/><circle cx="1060" cy="650" r="210"/></g>
+  <!-- ícones flutuando -->
+  <rect x="120" y="420" width="150" height="150" rx="44" fill="url(#ig)"/>
+  <rect x="152" y="452" width="86" height="86" rx="26" fill="none" stroke="#fff" stroke-width="11"/>
+  <circle cx="195" cy="495" r="20" fill="none" stroke="#fff" stroke-width="11"/><circle cx="222" cy="468" r="6" fill="#fff"/>
+  <circle cx="1010" cy="200" r="78" fill="#25a35a"/>
+  <path d="M968 246 l9-30 a46 46 0 1 1 18 16z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+  <!-- corações -->
+  <g fill="#e0306f">
+    <path d="M330 250 c0-26 34-34 44-10 10-24 44-16 44 10 0 26-44 50-44 50s-44-24-44-50z"/>
+    <path d="M940 470 c0-18 24-24 31-7 7-17 31-11 31 7 0 18-31 35-31 35s-31-17-31-35z" opacity=".8"/>
+  </g>
+  <!-- celular -->
+  <g transform="translate(420 70) rotate(-6 180 310)">
+    <rect width="360" height="640" rx="52" fill="#120720"/>
+    <rect x="16" y="16" width="328" height="608" rx="40" fill="#f8f3f9"/>
+    <rect x="16" y="16" width="328" height="88" rx="40" fill="#e0306f"/>
+    <rect x="16" y="64" width="328" height="40" fill="#e0306f"/>
+    <circle cx="70" cy="62" r="24" fill="#fff"/><text x="70" y="72" text-anchor="middle" font-family="Arial Black, Arial" font-size="26" font-weight="900" fill="#e0306f">N</text>
+    <rect x="106" y="48" width="130" height="14" rx="7" fill="#fff"/><rect x="106" y="70" width="80" height="10" rx="5" fill="#fff" opacity=".7"/>
+    <g font-family="Arial, Helvetica, sans-serif" font-weight="700">
+      <rect x="40" y="134" width="210" height="64" rx="22" fill="#fff" stroke="#e6dcea" stroke-width="3"/>
+      <text x="60" y="175" font-size="24" fill="#2b1245">Quanto custa?</text>
+      <rect x="104" y="222" width="220" height="104" rx="22" fill="#d6f5df"/>
+      <text x="122" y="262" font-size="22" fill="#1d5c34">Para você usar</text>
+      <text x="122" y="296" font-size="22" fill="#1d5c34">no dia a dia? ✓</text>
+      <rect x="40" y="350" width="200" height="64" rx="22" fill="#fff" stroke="#e6dcea" stroke-width="3"/>
+      <text x="60" y="391" font-size="24" fill="#2b1245">Isso! Todo dia</text>
+      <rect x="104" y="438" width="220" height="64" rx="22" fill="#d6f5df"/>
+      <text x="122" y="479" font-size="23" fill="#1d5c34">Separei 2 opções</text>
+      <rect x="40" y="526" width="250" height="64" rx="22" fill="#e0306f"/>
+      <text x="60" y="567" font-size="24" fill="#fff">Fechado! Vou levar</text>
+    </g>
+  </g>
+  <!-- notificação -->
+  <g transform="translate(760 560)">
+    <rect width="300" height="96" rx="26" fill="#fff"/>
+    <circle cx="52" cy="48" r="26" fill="#25a35a"/><path d="M40 48 l9 9 17-19" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="96" y="44" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="#2b1245">Pedido fechado</text>
+    <text x="96" y="74" font-family="Arial, sans-serif" font-size="20" fill="#66557a">agora mesmo</text>
+  </g>
+</svg>

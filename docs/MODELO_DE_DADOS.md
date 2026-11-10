@@ -134,4 +134,4 @@ Também existem `settings` (configurações em JSON), `testimonials` e `contact_
 | Mentoria agendada vira aluna automaticamente; cada mentoria gera no máximo uma receita | `academy.update_mentoring`, `bill_mentoring` |
 | Curso/turma com inscrições não pode ser excluído (desative ou cancele) | `courses` |
 | Limite do MEI proporcional no ano de abertura; alertas em 80% e 100% | `finance.mei_status` |
-| Chave PIX nunca sai na rota pública de configurações; só aparece após a inscrição | `site_settings.get_public` |
+| Chave Pix nunca sai na rota pública de configurações; só aparece após a inscrição | `site_settings.get_public` |

@@ -42,7 +42,7 @@ gestão — que aumente a captação de alunos e organize a rotina administrativ
 
 **Específicos:**
 - Publicar um site responsivo com cursos, turmas, mentoria, dicas e depoimentos;
-- Permitir inscrição online com controle automático de vagas e instruções de pagamento por PIX;
+- Permitir inscrição online com controle automático de vagas e instruções de pagamento por Pix;
 - Centralizar alunos, inscrições, pagamentos, mentorias e interessados em um painel;
 - Emitir certificados de conclusão com código de validação público;
 - Controlar receitas, despesas, o limite de faturamento do MEI e o DAS;
@@ -84,7 +84,7 @@ Python 3 e FastAPI (API REST), SQLAlchemy e SQLite (banco de dados relacional), 
 |---|---|
 | RF01 | Exibir cursos, turmas abertas com vagas restantes, dicas e depoimentos aprovados |
 | RF02 | Receber inscrições em turmas, bloqueando turma lotada e inscrição duplicada |
-| RF03 | Mostrar instruções de pagamento PIX após a inscrição |
+| RF03 | Mostrar instruções de pagamento Pix após a inscrição |
 | RF04 | Receber pedidos de mentoria individual e para equipes |
 | RF05 | Captar contatos de interessados com consentimento |
 | RF06 | Autenticar a administradora |
@@ -147,7 +147,7 @@ Sugestão de distribuição: 14 semanas de aproximadamente 18 horas.
 
 [Descreva o que aprendeu, as dificuldades encontradas (por exemplo: adequar a linguagem do painel a uma
 usuária não técnica, controlar vagas sem conflito, tornar o certificado verificável) e os próximos passos possíveis:
-pagamento PIX com confirmação automática, envio de e-mail, área do aluno com materiais, aplicativo instalável (PWA).]
+pagamento Pix com confirmação automática, envio de e-mail, área do aluno com materiais, aplicativo instalável (PWA).]
 
 ## 10. Referências
 

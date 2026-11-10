@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Ilustração: de vou pensar a venda fechada">
+  <rect width="1200" height="750" fill="#f8f3f9"/>
+  <g fill="#e6dcea"><circle cx="1050" cy="640" r="230"/><circle cx="130" cy="110" r="120"/></g>
+  <!-- cupom -->
+  <g transform="translate(650 60) rotate(4 200 320)">
+    <path d="M0 0 h400 v600 l-20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18 -20 18 -20 -18z" fill="#fffdf7" stroke="#e6dcea" stroke-width="3"/>
+    <text x="200" y="70" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="30" font-weight="700" fill="#2b1245">CUPOM DA VENDA</text>
+    <line x1="30" y1="100" x2="370" y2="100" stroke="#b9aebf" stroke-width="3" stroke-dasharray="10 8"/>
+    <g font-family="'Courier Prime', 'Courier New', monospace" font-size="24" fill="#2a2230">
+      <text x="30" y="150">Objeção ouvida</text><text x="370" y="150" text-anchor="end" fill="#1f8a4c" font-weight="700">OK</text>
+      <text x="30" y="200">Valor mostrado</text><text x="370" y="200" text-anchor="end" fill="#1f8a4c" font-weight="700">OK</text>
+      <text x="30" y="250">Dúvida resolvida</text><text x="370" y="250" text-anchor="end" fill="#1f8a4c" font-weight="700">OK</text>
+      <text x="30" y="300">Escolha guiada</text><text x="370" y="300" text-anchor="end" fill="#1f8a4c" font-weight="700">OK</text>
+    </g>
+    <line x1="30" y1="340" x2="370" y2="340" stroke="#b9aebf" stroke-width="3" stroke-dasharray="10 8"/>
+    <text x="30" y="390" font-family="'Courier Prime', 'Courier New', monospace" font-size="28" font-weight="700" fill="#2b1245">TOTAL</text>
+    <text x="370" y="390" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="28" font-weight="700" fill="#2b1245">sim!</text>
+    <g transform="translate(200 490) rotate(-12)">
+      <rect x="-180" y="-46" width="360" height="92" rx="14" fill="none" stroke="#e0306f" stroke-width="8"/>
+      <text x="0" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="800" fill="#e0306f">VENDA FECHADA</text>
+    </g>
+  </g>
+  <!-- balões -->
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <g transform="translate(90 170)" opacity=".55">
+      <rect width="400" height="130" rx="40" fill="#fff" stroke="#b9aebf" stroke-width="4"/>
+      <path d="M300 128 L330 186 L250 128 Z" fill="#fff"/>
+      <text x="200" y="84" text-anchor="middle" font-size="48" fill="#66557a">Vou pensar…</text>
+      <line x1="40" y1="68" x2="360" y2="68" stroke="#e0306f" stroke-width="9" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(110 400)">
+      <rect width="500" height="150" rx="44" fill="#2b1245"/>
+      <path d="M80 148 L56 214 L150 148 Z" fill="#2b1245"/>
+      <text x="250" y="94" text-anchor="middle" font-size="52" fill="#fff">Pode embrulhar!</text>
+    </g>
+  </g>
+  <g fill="#e0306f"><path d="M560 330 l10 28 28 10 -28 10 -10 28 -10 -28 -28 -10 28 -10z"/><path d="M90 640 l8 22 22 8 -22 8 -8 22 -8 -22 -22 -8 22 -8z"/></g>
+</svg>

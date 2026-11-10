@@ -1,4 +1,6 @@
 /* Site público — moldura compartilhada, formulários e lógica de cada página. */
+import { ATRIBUTOS_VALOR, CHECKLIST, DICAS, doDia, PALAVRAS, TRANSICOES } from "./conteudo.js";
+
 const API = "/api/public";
 
 const ICONS = {
@@ -47,7 +49,7 @@ function richText(text) {
 }
 
 /* ---------------------------------------------------------------- moldura */
-const NAV = [["/", "Início"], ["/cursos", "Cursos"], ["/mentoria", "Mentoria"], ["/dicas", "Dicas"], ["/sobre", "Sobre"], ["/contato", "Contato"]];
+const NAV = [["/", "Início"], ["/cursos", "Cursos"], ["/mentoria", "Mentoria"], ["/treino", "Treino"], ["/dicas", "Dicas"], ["/sobre", "Sobre"], ["/contato", "Contato"]];
 
 function renderFrame() {
   const header = document.querySelector("[data-header]");
@@ -82,7 +84,7 @@ function renderFrame() {
         ${SITE.email ? `<li>E-mail: <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></li>` : ""}
         <li><a href="/contato">Formulário de contato</a></li></ul></div>
       <div><h2>Navegação</h2><ul>
-        <li><a href="/cursos">Cursos e turmas</a></li><li><a href="/mentoria">Mentoria</a></li><li><a href="/dicas">Dicas de vendas</a></li>
+        <li><a href="/cursos">Cursos e turmas</a></li><li><a href="/mentoria">Mentoria</a></li><li><a href="/treino">Treino de vendas</a></li><li><a href="/dicas">Dicas de vendas</a></li>
         <li><a href="/depoimento">Deixar depoimento</a></li><li><a href="/certificado">Validar certificado</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div>
     </div><div class="footer-legal"><span>${esc(SITE.legal_name)} · CNPJ ${esc(SITE.cnpj)}</span>
       <span>© ${new Date().getFullYear()} · <a href="/admin">Área restrita</a></span></div></div>`;
@@ -164,16 +166,21 @@ function priceText(course, klass) {
   return v == null ? "Valor sob consulta" : v === 0 ? "Gratuito" : money(v);
 }
 
+/* Capa do curso: a foto enviada no painel ou, se não houver, a ilustração padrão do curso. */
+const COVERS = ["vendas-do-zero", "vendas-pelo-whatsapp-e-instagram", "atendimento-que-vende", "fechamento-e-objecoes"];
+export const coverFor = (c) => c.cover_path || `/assets/img/cursos/${COVERS.includes(c.slug) ? c.slug : "padrao"}.svg`;
+
 function courseRow(c) {
   const next = c.classes[0];
   return `<li class="course-row">
+    <a class="course-cover" href="/curso?c=${esc(c.slug)}" tabindex="-1" aria-hidden="true"><img src="${esc(coverFor(c))}" alt="" loading="lazy"></a>
     <div>
       <div class="course-meta"><span class="tag">${FORMATS[c.format]}</span><span class="tag">${c.workload_hours} h</span>
         ${next && next.seats_left <= 5 && next.seats_left > 0 ? `<span class="tag hot">Últimas ${next.seats_left} vagas</span>` : ""}</div>
       <h3><a href="/curso?c=${esc(c.slug)}">${esc(c.title)}</a></h3><p>${esc(c.tagline)}</p>
     </div>
     <div class="course-next">${next ? `<strong>Próxima turma: ${dateLong(next.start_date)}</strong><span class="muted">${esc(next.schedule)}</span>`
-      : c.format === "gravado" ? "<strong>Comece quando quiser</strong>" : `<strong>Nova turma em breve</strong><span class="muted">Deixe seu contato para ser avisada</span>`}</div>
+      : c.format === "gravado" ? "<strong>Comece quando quiser</strong>" : `<strong>Nova turma em breve</strong><span class="muted">Deixe seu contato para receber o aviso</span>`}</div>
     <div class="course-price"><span class="val">${priceText(c, next)}</span><span class="note">${esc(c.price_note) || "&nbsp;"}</span>
       <a class="btn" href="/curso?c=${esc(c.slug)}">Ver o curso</a></div>
   </li>`;
@@ -189,9 +196,26 @@ function postItem(p) {
     <div><h3><a href="/dica?p=${esc(p.slug)}">${esc(p.title)}</a></h3><p>${esc(p.excerpt)}</p></div></li>`;
 }
 
+/* ---------------------------------------------------------------- palavra e dica do dia */
+function wordCard(p, titulo = "Palavra do dia") {
+  return `<p class="kicker">${esc(titulo)}</p>
+    <p class="word">${esc(p.palavra)}</p>
+    <div class="challenge"><strong>Desafio</strong><p>${esc(p.desafio)}</p></div>
+    <div class="say"><strong>Use na conversa</strong><q>${esc(p.frase)}</q></div>`;
+}
+
+function renderDaily(box, { link = true } = {}) {
+  if (!box) return;
+  box.innerHTML = `
+    <article class="word-card" aria-live="polite">${wordCard(doDia(PALAVRAS))}</article>
+    <aside class="tip-card"><div><p class="kicker">Dica do dia</p><blockquote>${esc(doDia(DICAS))}</blockquote></div>
+      ${link ? `<a class="btn btn-light" href="/treino">Treinar meu atendimento</a>` : ""}</aside>`;
+}
+
 /* ---------------------------------------------------------------- páginas */
 const pages = {
   async home() {
+    renderDaily(document.querySelector("[data-daily]"));
     document.querySelector("[data-headline]").textContent = SITE.headline;
     document.querySelector("[data-intro]").textContent = SITE.intro;
     if (SITE.whatsapp) { const w = document.querySelector("[data-whats]"); w.href = whatsLink(); w.hidden = false; }
@@ -224,9 +248,12 @@ const pages = {
     document.querySelector('meta[name="description"]').content = c.tagline;
     document.querySelector("[data-title]").textContent = c.title;
     document.querySelector("[data-tagline]").textContent = c.tagline;
+    const cover = document.querySelector("[data-cover]");
+    cover.src = coverFor(c);
+    cover.alt = `Capa do curso ${c.title}`;
+    cover.hidden = false;
     const syllabus = lines(c.syllabus).map((l) => { const [h, ...rest] = l.split(":"); return rest.length ? [h, rest.join(":").trim()] : [l, ""]; });
     document.querySelector("[data-body]").innerHTML = `
-      ${c.cover_path ? `<img class="cover" src="${esc(c.cover_path)}" alt="" style="border-radius:14px;margin-bottom:2rem">` : ""}
       <h2>Sobre o curso</h2>${richText(c.description)}
       ${c.audience ? `<h2>Para quem é</h2><ul class="checklist">${lines(c.audience).map((l) => `<li>${esc(l)}</li>`).join("")}</ul>` : ""}
       ${c.outcomes ? `<h2>O que você vai aprender</h2><ul class="checklist">${lines(c.outcomes).map((l) => `<li>${esc(l)}</li>`).join("")}</ul>` : ""}
@@ -239,7 +266,7 @@ const pages = {
     const firstOpen = classes.find((k) => k.seats_left > 0);
     card.innerHTML = `
       <div class="facts-inline"><span class="tag">${FORMATS[c.format]}</span><span class="tag">${c.workload_hours} horas</span><span class="tag">Certificado</span></div>
-      <div class="price" data-price>${priceText(c, firstOpen)}</div><div class="price-note">${esc(c.price_note) || "Pagamento por PIX após a inscrição."}</div>
+      <div class="price" data-price>${priceText(c, firstOpen)}</div><div class="price-note">${esc(c.price_note) || "Pagamento por Pix após a inscrição."}</div>
       ${canEnroll ? `<form class="form" id="enroll-form" novalidate>
         <div class="notice" hidden></div>
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -254,7 +281,7 @@ const pages = {
         <label class="check"><input type="checkbox" name="consent" required data-msg="Marque para concluir a inscrição."><span>Li e aceito a <a href="/privacidade">política de privacidade</a>.</span></label>
         <button class="btn btn-hot" type="submit">Garantir minha vaga</button>
       </form>` : `<p>As inscrições para a próxima turma ainda não abriram.</p>
-        <a class="btn btn-hot" href="${whatsLink(`Oi, Naty! Quero ser avisada da próxima turma do curso ${c.title}.`)}" target="_blank" rel="noopener">Quero ser avisada</a>`}`;
+        <a class="btn btn-hot" href="${whatsLink(`Oi, Naty! Quero receber o aviso da próxima turma do curso ${c.title}.`)}" target="_blank" rel="noopener">Quero receber o aviso</a>`}`;
     const form = card.querySelector("#enroll-form");
     if (!form) return;
     form.addEventListener("change", (e) => {
@@ -263,11 +290,11 @@ const pages = {
     wireForm(form, "/enroll", {
       transform: (d) => ({ ...d, course_id: c.id, class_id: d.class_id ? Number(d.class_id) : null }),
       onDone: (res) => {
-        const msg = `Oi, Naty! Fiz minha inscrição nº ${res.id} no curso ${res.course}${res.class ? ` (${res.class})` : ""}. Segue o comprovante do PIX.`;
+        const msg = `Oi, Naty! Fiz minha inscrição nº ${res.id} no curso ${res.course}${res.class ? ` (${res.class})` : ""}. Segue o comprovante do Pix.`;
         card.innerHTML = `<h2 tabindex="-1" style="font-size:1.7rem">Inscrição recebida!</h2><p>${esc(res.message)}</p>
           ${res.amount > 0 ? `<div class="pix-box"><p style="margin:0 0 .4rem"><strong>Valor: ${money(res.amount)}</strong></p>
-            ${res.pix_key ? `<p style="margin:0">Chave PIX:<br><code>${esc(res.pix_key)}</code><br><span class="muted">${esc(res.pix_name)}</span></p>`
-              : `<p style="margin:0">Vou te mandar os dados de pagamento pelo WhatsApp.</p>`}</div>` : ""}
+            ${res.pix_key ? `<p style="margin:0">Chave Pix:<br><code>${esc(res.pix_key)}</code><br><span class="muted">${esc(res.pix_name)}</span></p>`
+              : `<p style="margin:0">Vou mandar os dados de pagamento pelo WhatsApp.</p>`}</div>` : ""}
           <a class="btn btn-whats" href="${whatsLink(msg)}" target="_blank" rel="noopener">${icon("whats")} Enviar comprovante no WhatsApp</a>
           <p class="muted" style="margin-top:1rem;font-size:.92rem">Número da inscrição: ${res.id}</p>`;
         card.querySelector("h2").focus();
@@ -328,6 +355,58 @@ const pages = {
 
   async depoimento() {
     wireForm(document.querySelector("#review-form"), "/testimonials", { transform: (d) => ({ ...d, rating: Number(d.rating || 5) }) });
+  },
+
+  async treino() {
+    renderDaily(document.querySelector("[data-daily]"), { link: false });
+    const hoje = doDia(PALAVRAS);
+
+    // 40 palavras: clique para ver o desafio de cada uma
+    const grid = document.querySelector("[data-words]");
+    const card = document.querySelector("[data-word-detail]");
+    grid.innerHTML = PALAVRAS.map((p, i) => `<button type="button" data-i="${i}" aria-pressed="false"
+      class="${p === hoje ? "today" : ""}" ${p === hoje ? 'title="Palavra de hoje"' : ""}>${esc(p.palavra)}</button>`).join("");
+    grid.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      grid.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+      card.innerHTML = wordCard(PALAVRAS[b.dataset.i], "Palavra escolhida");
+      card.hidden = false;
+      card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    // checklist interativo
+    const form = document.querySelector("[data-checklist]");
+    let n = 0;
+    form.innerHTML = CHECKLIST.map((etapa, e) => `<fieldset class="cl-stage" style="border:0;padding:0;margin:0 0 1.6rem">
+        <legend><h3><span>${e + 1}</span>${esc(etapa.etapa)}</h3></legend>
+        ${etapa.itens.map((item) => `<label class="cl-item"><input type="checkbox" name="i${n++}"><span>${esc(item)}</span></label>`).join("")}
+      </fieldset>`).join("");
+    const total = n;
+    const out = document.querySelector("[data-score]");
+    const update = () => {
+      const feitos = form.querySelectorAll("input:checked").length;
+      const pct = Math.round((feitos / total) * 100);
+      const [titulo, texto] = pct >= 85
+        ? ["Atendimento de excelência", "Você já faz quase tudo. Agora é manter a consistência e treinar os detalhes que faltaram."]
+        : pct >= 55
+          ? ["Bom caminho", "A base está lá. Os pontos que ficaram sem marcar são exatamente onde estão as vendas que escapam."]
+          : ["Hora de treinar", "Cada item desmarcado é uma oportunidade de vender mais. Dá para melhorar rápido com método e prática."];
+      out.innerHTML = `<p class="kicker" style="font-weight:700;color:var(--hot-deep);margin:0">Sua nota</p>
+        <div class="big">${feitos}<span style="font-size:1.4rem;color:var(--ink-soft)">/${total}</span></div>
+        <div class="cl-bar"><span style="width:${pct}%"></span></div>
+        <h3 style="margin-bottom:.3rem">${titulo}</h3><p style="margin:0;color:var(--ink-soft)">${texto}</p>
+        <div class="actions no-print"><a class="btn btn-hot" href="/cursos">Ver cursos</a><a class="btn btn-ghost" href="/mentoria">Mentoria</a>
+          <button class="btn btn-ghost" type="button" data-print>Imprimir</button></div>`;
+      out.querySelector("[data-print]").onclick = () => window.print();
+    };
+    form.addEventListener("change", update);
+    update();
+
+    // da resposta à oportunidade
+    document.querySelector("[data-says]").innerHTML = TRANSICOES.map((t) =>
+      `<li><q>${esc(t.diz)}</q><span class="arrow" aria-hidden="true">→</span><span>${esc(t.oferta)}</span></li>`).join("");
+    document.querySelector("[data-values]").innerHTML = ATRIBUTOS_VALOR.map((a) => `<li>${esc(a)}</li>`).join("");
   },
 
   async certificado() {

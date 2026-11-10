@@ -1,7 +1,7 @@
 # Naty Alves · Mentoria e Cursos de Vendas
 
 Site e sistema de gestão para **Natalice Alves da Silva (Naty)**, mentora e instrutora de vendas:
-divulgação dos cursos, inscrição em turmas com pagamento por PIX, pedidos de mentoria, blog de dicas,
+divulgação dos cursos, inscrição em turmas com pagamento por Pix, pedidos de mentoria, blog de dicas,
 certificado com validação online e controle financeiro do MEI.
 
 Projeto de extensão do curso de **Análise e Desenvolvimento de Sistemas (UNIP)**, com front-end,
@@ -15,8 +15,12 @@ back-end e banco de dados.
 - Página inicial com chamada forte, públicos, cursos em destaque, mentoria, dicas, depoimentos, FAQ e captação de contatos
 - Catálogo de cursos e página de cada curso: conteúdo, para quem é, o que aprende, turmas abertas com **vagas restantes**
 - **Inscrição online** na turma, com bloqueio de turma lotada e de inscrição duplicada; depois da inscrição o aluno
-  vê a chave PIX e um botão para mandar o comprovante pelo WhatsApp já com a mensagem pronta
+  vê a chave Pix e um botão para mandar o comprovante pelo WhatsApp já com a mensagem pronta
 - Pedido de mentoria individual ou para equipes
+- **Palavra do dia e dica do dia** na página inicial, que mudam sozinhas a cada dia
+- Página **Treino de vendas**: 40 palavras para ampliar o repertório, checklist de atendimento interativo com nota,
+  preço e valor, e "da resposta à oportunidade"
+- Capas ilustradas para os cursos (substituíveis por foto no painel)
 - Blog de dicas de vendas (bom para o Google e para compartilhar no Instagram)
 - **Validação pública de certificado** pelo código impresso
 - Depoimentos com moderação, contato, política de privacidade (LGPD), botão flutuante de WhatsApp, responsivo e acessível
@@ -32,7 +36,7 @@ back-end e banco de dados.
 - **Mentorias**: agendamento, valor, anotações, lançamento do pagamento
 - **Interessados**: contatos que pediram dicas, marcação de quem já foi chamado, exportação
 - **Financeiro e MEI**: receitas e despesas, gráfico mensal, CSV, medidor do limite do MEI (proporcional no ano de abertura) e DAS mês a mês
-- **Dicas, depoimentos, mensagens e configurações** (textos, contatos, chave PIX, dados do MEI, troca de senha, histórico de atividades)
+- **Dicas, depoimentos, mensagens e configurações** (textos, contatos, chave Pix, dados do MEI, troca de senha, histórico de atividades)
 
 ## Tecnologias
 

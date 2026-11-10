@@ -4,7 +4,7 @@ Acesse **seusite.com.br/admin** com seu e-mail e senha.
 
 ## Antes de divulgar
 1. **Configurações → Trocar senha.**
-2. Em **Configurações**, preencha a **chave PIX** (sem ela, o aluno vê "vou te mandar os dados pelo WhatsApp") e o e-mail.
+2. Em **Configurações**, preencha a **chave Pix** (sem ela, o aluno vê "vou te mandar os dados pelo WhatsApp") e o e-mail.
 3. Revise os textos da página inicial, da mentoria e da página Sobre. Eles foram escritos como ponto de partida: ajuste para a sua história.
 4. Em **Cursos**, defina o preço de cada curso (vazio mostra "Valor sob consulta"), coloque uma capa e revise o conteúdo.
 5. Em **Dicas**, revise as 3 dicas de exemplo e marque "Publicar no site" nas que quiser manter.
@@ -16,8 +16,8 @@ coloque o link da aula no campo "Link da aula online": ele fica só no painel.
 
 ## Quando alguém se inscreve
 1. O número ao lado de **Inscrições** mostra quem está aguardando pagamento.
-2. Abra a inscrição e use **WhatsApp: cobrar PIX** se a pessoa não mandou o comprovante.
-3. Recebeu o PIX? Clique em **Registrar pagamento**. A vaga fica confirmada e o valor entra no financeiro.
+2. Abra a inscrição e use **WhatsApp: cobrar Pix** se a pessoa não mandou o comprovante.
+3. Recebeu o Pix? Clique em **Registrar pagamento**. A vaga fica confirmada e o valor entra no financeiro.
 4. Use **WhatsApp: confirmar vaga** para avisar a pessoa com data e horário.
 5. Na turma, **Copiar telefones** facilita criar uma lista de transmissão para mandar o link da aula.
 

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b1245">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:site_name" content="Naty Alves · Mentora de vendas">
+<script type="module" src="/assets/js/site.js"></script>
+<title>Treino de vendas · Naty Alves</title>
+<meta name="description" content="Palavra do dia, checklist do atendimento, preço e valor e frases de transição para treinar vendas todos os dias.">
+</head>
+<body data-page="treino">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header data-header></header>
+<main id="conteudo">
+  <div class="page-head"><div class="wrap">
+    <h1>Treino de vendas</h1>
+    <p>Ferramentas rápidas para treinar todo dia, sozinha ou com a equipe da loja.</p>
+    <nav class="toc" aria-label="Nesta página">
+      <a href="#hoje">Palavra e dica do dia</a><a href="#palavras">40 palavras</a><a href="#checklist">Checklist do atendimento</a>
+      <a href="#valor">Preço e valor</a><a href="#oportunidade">Da resposta à oportunidade</a>
+    </nav>
+  </div></div>
+
+  <section class="section" id="hoje">
+    <div class="wrap">
+      <div class="section-head"><h2>Hoje</h2><p>Uma palavra nova para usar nas conversas e um desafio para colocar em prática ainda hoje.</p></div>
+      <div class="daily" data-daily></div>
+    </div>
+  </section>
+
+  <section class="section mist" id="palavras">
+    <div class="wrap">
+      <div class="section-head"><h2>40 palavras para ampliar o repertório</h2>
+        <p>Quem tem mais palavras argumenta melhor. Escolha uma para ver o desafio e como usá-la na conversa. A palavra de hoje está com borda rosa.</p></div>
+      <div class="words-grid" data-words></div>
+      <article class="word-card" data-word-detail hidden style="margin-top:1.5rem" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section class="section" id="checklist">
+    <div class="wrap">
+      <div class="section-head"><h2>Checklist do atendimento</h2>
+        <p>Pense no seu último atendimento e marque o que você fez. No fim, veja sua nota e onde estão as vendas que escapam.</p></div>
+      <div class="checklist-tool">
+        <form data-checklist onsubmit="return false"></form>
+        <aside class="cl-score" data-score aria-live="polite"></aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mist" id="valor">
+    <div class="wrap">
+      <div class="section-head"><h2>Preço e valor não são a mesma coisa</h2>
+        <p>Quando o cliente diz que achou caro, ele está olhando só para o preço. O seu trabalho é mostrar o valor.</p></div>
+      <div class="value-split">
+        <div class="price"><h3>Preço</h3><p>É o número na etiqueta.</p><span class="tag-price">R$ 59,90</span>
+          <p style="margin:0">Sozinho, ele não diz se a compra vale a pena.</p></div>
+        <div class="value"><h3>Valor</h3><p>É o que o produto representa na vida do cliente. Use estes atributos para responder à objeção de preço:</p>
+          <ul data-values></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="oportunidade">
+    <div class="wrap">
+      <div class="section-head"><h2>Da resposta à oportunidade</h2>
+        <p>O que o cliente conta revela o que mais ele precisa. Transição não é trocar de assunto: é aprofundar a necessidade.</p></div>
+      <ul class="says" data-says></ul>
+      <div class="lead-box" style="margin-top:3rem">
+        <div><h2>Quer treinar isso com acompanhamento?</h2><p>Nos cursos e na mentoria, a gente pratica com simulações das situações reais do seu dia a dia.</p></div>
+        <div style="display:flex;flex-wrap:wrap;gap:.8rem"><a class="btn btn-hot" href="/cursos">Ver cursos</a><a class="btn btn-light" href="/mentoria">Conhecer a mentoria</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer data-footer></footer>
+</body>
+</html>

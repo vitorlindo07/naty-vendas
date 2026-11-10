@@ -47,7 +47,7 @@ export async function mentoring(view, [openId]) {
         { label: "WhatsApp", onClick: () => { window.open(whatsUrl(m.phone, `Oi, ${first}! Aqui é a Naty. Recebi seu pedido de mentoria pelo site. Podemos conversar?`), "_blank", "noopener"); return false; } },
         { label: "Lançar pagamento", onClick: async (v) => {
           await api(`/api/admin/mentoring/${m.id}`, { method: "PATCH", body: { ...v, scheduled_at: v.scheduled_at || null } });
-          await api(`/api/admin/mentoring/${m.id}/bill`, { method: "POST", body: { payment_method: "PIX", paid_on: isoToday() } });
+          await api(`/api/admin/mentoring/${m.id}/bill`, { method: "POST", body: { payment_method: "Pix", paid_on: isoToday() } });
           toast("Pagamento lançado no financeiro."); draw();
         } },
       ],
@@ -73,7 +73,7 @@ export async function leads(view) {
     view.querySelector("[data-table]").innerHTML = list.length ? `<table>
       <thead><tr><th>Data</th><th>Nome</th><th>WhatsApp</th><th>Interesse</th><th></th></tr></thead>
       <tbody>${list.map((l) => `<tr><td>${dateBR(l.created_at)}</td><td><strong>${esc(l.name)}</strong></td>
-        <td><a href="${whatsUrl(l.phone, `Oi, ${l.name.split(" ")[0]}! Aqui é a Naty. Você pediu para ser avisada das novas turmas.`)}" target="_blank" rel="noopener">${esc(l.phone)}</a></td>
+        <td><a href="${whatsUrl(l.phone, `Oi, ${l.name.split(" ")[0]}! Aqui é a Naty. Você pediu para receber o aviso das novas turmas.`)}" target="_blank" rel="noopener">${esc(l.phone)}</a></td>
         <td>${esc(l.interest) || "—"}</td>
         <td class="num"><button class="btn btn-sm ${l.contacted ? "btn-ghost" : ""}" data-c="${l.id}" data-v="${!l.contacted}">${l.contacted ? "Já chamei ✓" : "Marcar como chamado"}</button>
           <button class="btn btn-sm btn-danger" data-del="${l.id}" aria-label="Excluir ${esc(l.name)}">Excluir</button></td></tr>`).join("")}</tbody></table>`

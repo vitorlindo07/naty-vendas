@@ -121,7 +121,7 @@ export async function finance(view) {
         { name: "category", label: "Categoria", type: "select", options: CATEGORIES[k].map((c) => [c, c]) },
         { name: "status", label: "Situação", type: "select", options: [["pago", k === "receita" ? "Recebido" : "Pago"], ["pendente", "Pendente"]] },
         { name: "payment_method", label: "Forma de pagamento", type: "select",
-          options: [["", "—"], ["PIX", "PIX"], ["Transferência", "Transferência"], ["Dinheiro", "Dinheiro"], ["Boleto", "Boleto"], ["Cartão", "Cartão"]] },
+          options: [["", "—"], ["Pix", "Pix"], ["Transferência", "Transferência"], ["Dinheiro", "Dinheiro"], ["Boleto", "Boleto"], ["Cartão", "Cartão"]] },
         ...(k === "receita" ? [
           { name: "invoice_number", label: "Número da nota fiscal" },
           { name: "student_id", label: "Aluno / cliente", type: "select", nullable: true, full: true,
